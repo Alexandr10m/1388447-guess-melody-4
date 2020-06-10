@@ -1,7 +1,7 @@
 # Учебный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр](https://up.htmlacademy.ru/react/4/user/1388447).
-* Наставник: `Белик Павел`.
+* Наставник: [Белик Павел](https://htmlacademy.ru/profile/id84572).
 
 ---
 
