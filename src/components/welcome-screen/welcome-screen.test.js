@@ -9,6 +9,7 @@ describe(`Snapshot of WelcomScreen`, () => {
       .create(
           <WelcomeScreen
             errorsCount={3}
+            onWelcomeButtonClick={() => {}}
           />)
       .toJSON();
 
