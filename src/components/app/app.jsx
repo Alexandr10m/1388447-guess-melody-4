@@ -14,6 +14,19 @@ class App extends PureComponent {
     this.state = {
       step: -1,
     };
+
+    this.handleWelcomeClick = this.handleWelcomeClick.bind(this);
+    this.handleGameClick = this.handleGameClick.bind(this);
+  }
+
+  handleWelcomeClick() {
+    this.setState({step: 0});
+  }
+
+  handleGameClick() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1,
+    }));
   }
 
   _renderGameScreen() {
@@ -25,11 +38,7 @@ class App extends PureComponent {
       return (
         <WelcomeScreen
           errorsCount={errorsCount}
-          onWelcomeButtonClick={() => {
-            this.setState({
-              step: 0,
-            });
-          }}
+          onWelcomeButtonClick={this.handleWelcomeClick}
         />
       );
     }
@@ -40,22 +49,14 @@ class App extends PureComponent {
           return (
             <ArtistQuestionScreen
               question={question}
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
+              onAnswer={this.handleGameClick}
             />
           );
         case GameType.GENRE:
           return (
             <GenreQuestionScreen
               question={question}
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
+              onAnswer={this.handleGameClick}
             />
           );
       }
@@ -75,13 +76,13 @@ class App extends PureComponent {
           <Route exact path="/artist">
             <ArtistQuestionScreen
               question={questions[1]}
-              onAnswer={() => {}}
+              onAnswer={this.handleGameClick}
             />
           </Route>
           <Route exact path="/genre">
             <GenreQuestionScreen
               question={questions[0]}
-              onAnswer={() => {}}
+              onAnswer={this.handleGameClick}
             />
           </Route>
         </Switch>
