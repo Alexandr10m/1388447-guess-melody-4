@@ -3,9 +3,21 @@ import PropTypes from "prop-types";
 import {GameType} from "../../constants";
 
 
+const INPUT_ID_PREFIX = `answer-`;
+
+const getInputIndexById = (id) => {
+  return Number(id.substring(INPUT_ID_PREFIX.length));
+};
+
 const ArtistQuestionScreen = (props) => {
   const {onAnswer, question} = props;
   const {answers, song} = question;
+
+  const handlerInputChange = (evt) => {
+    evt.preventDefault();
+    const index = getInputIndexById(evt.target.id);
+    onAnswer(question, answers[index]);
+  };
 
   return (
     <section className="game game--artist">
@@ -41,10 +53,7 @@ const ArtistQuestionScreen = (props) => {
           {answers.map((answer, i) => (
             <div key={answer.artist} className="artist">
               <input className="artist__input visually-hidden" type="radio" name="answer" value={`answer-${i}`} id={`answer-${i}`}
-                onChange={(evt) => {
-                  evt.preventDefault();
-                  onAnswer(question, answer);
-                }}
+                onChange={handlerInputChange}
               />
               <label className="artist__name" htmlFor={`answer-${i}`}>
                 <img className="artist__picture" src={answer.picture} alt={answer.artist} />

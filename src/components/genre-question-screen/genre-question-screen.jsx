@@ -3,16 +3,38 @@ import PropTypes from "prop-types";
 import {GameType} from "../../constants.js";
 
 
+const INPUT_ID_PREFIX = `answer-`;
+
+const getInputIndexById = (id) => {
+  return Number(id.substring(INPUT_ID_PREFIX.length));
+};
+
 class GenreQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       answers: [false, false, false, false],
     };
+    this.handlerFormSubmit = this.handlerFormSubmit.bind(this);
+  }
+
+  handlerFormSubmit(evt) {
+    const {onAnswer, question} = this.props;
+    evt.preventDefault();
+    onAnswer(question, this.state.answers);
+  }
+
+  handlerInputChange(evt) {
+    const {answers: userAnswers} = this.state;
+    const value = evt.target.checked;
+    const i = getInputIndexById(evt.target.id);
+    this.setState({
+      answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
+    });
   }
 
   render() {
-    const {onAnswer, question} = this.props;
+    const {question} = this.props;
     const {answers: userAnswers} = this.state;
     const {answers, genre} = question;
 
@@ -38,10 +60,7 @@ class GenreQuestionScreen extends PureComponent {
           <form
 
             className="game__tracks"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              onAnswer(question, this.state.answers);
-            }}
+            onSubmit={this.handlerFormSubmit}
           >
 
             {answers.map((answer, i) => (
