@@ -28,7 +28,10 @@ const mock = {
 };
 
 const mockEvent = {
-  preventDefault() {}
+  preventDefault: () => {},
+  target: {
+    id: `0`,
+  },
 };
 
 describe(`E2E test of ArtistQuestionScreen`, () => {
