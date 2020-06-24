@@ -27,6 +27,7 @@ describe(`Snapshot of GenreQuestionScreen`, () => {
       <GenreQuestionScreen
         question={question}
         onAnswer={() => {}}
+        renderPlayer={() => {}}
       />
     ), {
       createNodeMock: () => {
