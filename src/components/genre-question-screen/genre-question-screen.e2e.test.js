@@ -35,6 +35,7 @@ describe(`E2E test of GenreQuestionScreen`, () => {
     const genreQuestion = shallow(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
+      renderPlayer={() => {}}
     />);
 
     const form = genreQuestion.find(`form`);
@@ -50,17 +51,18 @@ describe(`E2E test of GenreQuestionScreen`, () => {
   it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
     const {question} = mock;
     const onAnswer = jest.fn((...args) => [...args]);
-    const userAnswer = [false, true, false, false];
+    const userAnswer = [true, false, false, false];
 
     const genreQuestion = shallow(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
+      renderPlayer={() => {}}
     />);
 
     const form = genreQuestion.find(`form`);
-    const inputTwo = genreQuestion.find(`input`).at(1);
+    const inputTwo = genreQuestion.find(`input`).at(0);
 
-    inputTwo.simulate(`change`, {target: {checked: true}});
+    inputTwo.simulate(`change`, {target: {id: `0`, checked: true}});
     form.simulate(`submit`, {preventDefault() {}});
 
     expect(onAnswer).toHaveBeenCalledTimes(1);

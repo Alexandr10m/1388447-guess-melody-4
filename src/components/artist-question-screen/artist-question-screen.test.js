@@ -27,7 +27,12 @@ describe(`Snapshot of ArtistQuestionScreen`, () => {
         <ArtistQuestionScreen
           question={question}
           onAnswer={() => {}}
-        />
+          renderPlayer={() => {}}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
