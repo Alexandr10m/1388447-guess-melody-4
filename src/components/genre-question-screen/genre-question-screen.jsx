@@ -16,6 +16,7 @@ class GenreQuestionScreen extends PureComponent {
       answers: [false, false, false, false],
     };
     this.handlerFormSubmit = this.handlerFormSubmit.bind(this);
+    this.handlerInputChange = this.handlerInputChange.bind(this);
   }
 
   handlerFormSubmit(evt) {
@@ -26,8 +27,10 @@ class GenreQuestionScreen extends PureComponent {
 
   handlerInputChange(evt) {
     const {answers: userAnswers} = this.state;
+
     const value = evt.target.checked;
     const i = getInputIndexById(evt.target.id);
+
     this.setState({
       answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
     });
@@ -54,12 +57,7 @@ class GenreQuestionScreen extends PureComponent {
                 <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`}
                   id={`answer-${i}`}
                   checked={userAnswers[i]}
-                  onChange={(evt) => {
-                    const value = evt.target.checked;
-                    this.setState({
-                      answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-                    });
-                  }}
+                  onChange={this.handlerInputChange}
                 />
                 <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
               </div>
