@@ -4,7 +4,9 @@
   "private": true,
   "description": "Учебный проект «Угадай мелодию» от HTML Academy",
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>src/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.js"
+    ]
   },
   "scripts": {
     "start": "webpack-dev-server",
@@ -37,6 +39,8 @@
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router-dom": "5.2.0"
+    "react-redux": "7.2.0",
+    "react-router-dom": "5.2.0",
+    "redux": "4.0.5"
   }
 }
