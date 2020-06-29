@@ -1,8 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import {App} from "./app.jsx";
 
 
+const mockStore = configureStore([]);
 const questions = [
   {
     type: `genre`,
@@ -42,49 +45,70 @@ const questions = [
 
 describe(`Snapshot of App`, () => {
   it(`Render WelcomeScreen`, () => {
+    const store = mockStore({
+      mistakes: 0,
+    });
+
     const tree = renderer
-    .create(<App
-      errorsCount={3}
-      questions={questions}
-      onUserAnswer={() => {}}
-      onWelcomeButtonClick={() => {}}
-      step={-1}
-    />)
+    .create(
+        <Provider store={store}>
+          <App
+            maxMistakes={3}
+            questions={questions}
+            onUserAnswer={() => {}}
+            onWelcomeButtonClick={() => {}}
+            step={-1}
+          />
+        </Provider>)
     .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it(`Render GenreQuestionScreen`, () => {
+    const store = mockStore({
+      mistakes: 0,
+    });
+
     const tree = renderer
-      .create(<App
-        errorsCount={3}
-        questions={questions}
-        onUserAnswer={() => {}}
-        onWelcomeButtonClick={() => {}}
-        step={0}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      .create(
+          <Provider store={store}>
+            <App
+              maxMistakes={3}
+              questions={questions}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              step={0}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`Render ArtistQuestionScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
     const tree = renderer
-      .create(<App
-        errorsCount={3}
-        questions={questions}
-        onUserAnswer={() => {}}
-        onWelcomeButtonClick={() => {}}
-        step={1}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      .create(
+          <Provider store={store}>
+            <App
+              maxMistakes={3}
+              questions={questions}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              step={1}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
