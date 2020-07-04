@@ -12,21 +12,21 @@ const withUserAnswer = (Component) => {
         answers: new Array(props.question.answers.length).fill(false),
       };
 
-      this.handlerFormSubmit = this.handlerFormSubmit.bind(this);
-      this.handlerInputChange = this.handlerInputChange.bind(this);
+      this.handleAnswer = this.handleAnswer.bind(this);
+      this.handleChange = this.handleChange.bind(this);
     }
 
-    handlerFormSubmit() {
+    handleAnswer() {
       const {onAnswer, question} = this.props;
       const {answers} = this.state;
 
       onAnswer(question, answers);
     }
 
-    handlerInputChange(i, value) {
+    handleChange(i, value) {
       const {answers} = this.state;
 
-      const userAnswers = answers.slice();
+      const userAnswers = answers.slice(0);
       userAnswers[i] = value;
 
       this.setState({
@@ -41,16 +41,14 @@ const withUserAnswer = (Component) => {
         <Component
           {...this.props}
           userAnswers={answers}
-          onAnswer={this.handlerFormSubmit}
-          onChange={this.handlerInputChange}
-        >
-        </Component>
+          onAnswer={this.handleAnswer}
+          onChange={this.handleChange}
+        />
       );
     }
   }
 
   WithUserAnswer.propTypes = {
-    onAnswer: PropTypes.func.isRequired,
     question: PropTypes.shape({
       answers: PropTypes.arrayOf(PropTypes.shape({
         src: PropTypes.string.isRequired,
@@ -59,7 +57,9 @@ const withUserAnswer = (Component) => {
       genre: PropTypes.string.isRequired,
       type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
     }).isRequired,
+    onAnswer: PropTypes.func.isRequired,
   };
+
 
   return WithUserAnswer;
 };
