@@ -1,4 +1,4 @@
-import React, {PureComponent, createRef} from "react";
+import React, {createRef, PureComponent} from "react";
 import PropTypes from "prop-types";
 
 const withAudio = (Component) => {
@@ -11,10 +11,10 @@ const withAudio = (Component) => {
       this.state = {
         progress: 0,
         isLoading: true,
-        isPlaying: this.props.isPlaying,
+        isPlaying: props.isPlaying,
       };
 
-      this.handlerButtonClick = this.handlerButtonClick.bind(this);
+      this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
     }
 
     componentDidMount() {
@@ -27,17 +27,29 @@ const withAudio = (Component) => {
         isLoading: false,
       });
 
-      audio.onplay = () => this.setState({
-        isPlaying: true,
-      });
+      audio.onplay = () => {
+        this.setState({
+          isPlaying: true,
+        });
+      };
 
       audio.onpause = () => this.setState({
         isPlaying: false,
       });
 
       audio.ontimeupdate = () => this.setState({
-        progress: audio.currentTime,
+        progress: Math.floor(audio.currentTime),
       });
+    }
+
+    componentDidUpdate() {
+      const audio = this._audioRef.current;
+
+      if (this.state.isPlaying) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
     }
 
     componentWillUnmount() {
@@ -50,10 +62,11 @@ const withAudio = (Component) => {
       audio.src = ``;
     }
 
-    handlerButtonClick() {
+    handlePlayButtonClick() {
       const {onPlayButtonClick} = this.props;
+      const {isPlaying} = this.state;
 
-      this.setState({isPlaying: !this.state.isPlaying});
+      this.setState({isPlaying: !isPlaying});
       onPlayButtonClick();
     }
 
@@ -65,23 +78,13 @@ const withAudio = (Component) => {
           {...this.props}
           isLoading={isLoading}
           isPlaying={isPlaying}
-          onPlayButtonClick={this.handlerButtonClick}
+          onPlayButtonClick={this.handlePlayButtonClick}
         >
           <audio
             ref={this._audioRef}
           />
         </Component>
       );
-    }
-
-    componentDidUpdate() {
-      const audio = this._audioRef.current;
-
-      if (this.props.isPlaying) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
     }
   }
 
@@ -93,6 +96,5 @@ const withAudio = (Component) => {
 
   return WithAudio;
 };
-
 
 export default withAudio;
