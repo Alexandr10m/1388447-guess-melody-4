@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import GenreQuestionScreen from "./genre-question-screen.jsx";
 
 
@@ -32,10 +32,12 @@ describe(`E2E test of GenreQuestionScreen`, () => {
   it(`When user answers genre question form is not sent`, () => {
     const {question} = mock;
     const onAnswer = jest.fn();
-    const genreQuestion = shallow(<GenreQuestionScreen
+    const genreQuestion = mount(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
       renderPlayer={() => {}}
+      onChange={()=>{}}
+      userAnswers={[false, false, false, false]}
     />);
 
     const form = genreQuestion.find(`form`);
@@ -53,10 +55,12 @@ describe(`E2E test of GenreQuestionScreen`, () => {
     const onAnswer = jest.fn((...args) => [...args]);
     const userAnswer = [true, false, false, false];
 
-    const genreQuestion = shallow(<GenreQuestionScreen
+    const genreQuestion = mount(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
       renderPlayer={() => {}}
+      onChange={() => {}}
+      userAnswers={userAnswer}
     />);
 
     const form = genreQuestion.find(`form`);
@@ -67,8 +71,7 @@ describe(`E2E test of GenreQuestionScreen`, () => {
 
     expect(onAnswer).toHaveBeenCalledTimes(1);
 
-    expect(onAnswer.mock.calls[0][0]).toMatchObject(question);
-    expect(onAnswer.mock.calls[0][1]).toMatchObject(userAnswer);
+    expect(onAnswer.mock.calls[0][0]).toEqual(void 0);
 
     expect(
         genreQuestion.find(`input`).map((it) => it.prop(`checked`))
