@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import GenreQuestionScreen from "./genre-question-screen.jsx";
 
 
@@ -32,10 +32,11 @@ describe(`E2E test of GenreQuestionScreen`, () => {
   it(`When user answers genre question form is not sent`, () => {
     const {question} = mock;
     const onAnswer = jest.fn();
-    const genreQuestion = shallow(<GenreQuestionScreen
+    const genreQuestion = mount(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
       renderPlayer={() => {}}
+      onChange={()=>{}}
       userAnswers={[false, false, false, false]}
     />);
 
@@ -54,7 +55,7 @@ describe(`E2E test of GenreQuestionScreen`, () => {
     const onAnswer = jest.fn((...args) => [...args]);
     const userAnswer = [true, false, false, false];
 
-    const genreQuestion = shallow(<GenreQuestionScreen
+    const genreQuestion = mount(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
       renderPlayer={() => {}}
