@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export default class AudioPlayer extends PureComponent {
   render() {
-    const {isLoading, isPlaying, onPlayButtonClick, childern} = this.state;
+    const {isLoading, isPlaying, onPlayButtonClick, children} = this.props;
 
     return (
       <Fragment>
@@ -15,7 +15,7 @@ export default class AudioPlayer extends PureComponent {
           onClick={onPlayButtonClick}
         />
         <div className="track__status">
-          {childern}
+          {children}
         </div>
       </Fragment>
     );
@@ -27,7 +27,7 @@ AudioPlayer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  childern: PropTypes.oneOfType([
+  children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
