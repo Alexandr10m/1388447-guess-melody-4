@@ -43,17 +43,7 @@ exports[`Snapshot of App Render ArtistQuestionScreen 1`] = `
     </svg>
     <div
       className="game__mistakes"
-    >
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-    </div>
+    />
   </header>
   <section
     className="game__screen"
