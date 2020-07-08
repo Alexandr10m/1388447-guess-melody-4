@@ -1,14 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
-import {reducer} from "./reducer.js";
-
+import reducer from "./reducer/reducer.js";
+import {Operation as DataOperation} from "./reducer/data/data.js";
+import {createAPI} from "./api.js";
+import thunk from "redux-thunk";
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f;
 
-const store = createStore(reducer, reduxDevTools);
+const api = createAPI();
+
+const store = createStore(reducer, compose(
+    applyMiddleware(thunk.withExtraArgument(api)),
+    reduxDevTools
+));
+
+store.dispatch(DataOperation.loadQuestions());
 
 ReactDOM.render(
     <Provider store={store}>
