@@ -1,12 +1,10 @@
-import {extend} from "./utils.js";
-import {GameType} from "./constants.js";
-import questions from "./mocks/questions.js";
+import {extend} from "../../utils.js";
+import {GameType} from "../../constants.js";
 
 const initialState = {
   mistakes: 0,
   maxMistakes: 3,
   step: -1,
-  questions,
 };
 
 const ActionType = {
