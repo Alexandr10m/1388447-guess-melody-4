@@ -7,17 +7,18 @@ class AuthScreen extends PureComponent {
     super(props);
 
     this.loginRef = createRef();
-    this.passwordReff = createRef();
+    this.passwordRef = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(evt) {
+    const {onSubmit} = this.props;
     evt.preventDefault();
 
-    onsubmit({
+    onSubmit({
       login: this.loginRef.current.value,
-      password: this.passwordReff.current.value,
+      password: this.passwordRef.current.value,
     });
   }
 
