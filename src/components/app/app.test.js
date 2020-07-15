@@ -5,8 +5,6 @@ import configureStore from "redux-mock-store";
 import {App} from "./app.jsx";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-
-
 const mockStore = configureStore([]);
 const questions = [
   {
@@ -43,42 +41,42 @@ const questions = [
     }],
   },
 ];
-
-
-describe(`Snapshot of App`, () => {
+describe(`Render App`, () => {
   it(`Render WelcomeScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
         mistakes: 0,
       },
-    });
-
-    const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            authorizationStatus={AuthorizationStatus.NO_AUTH}
-            login={() => {}}
-            maxMistakes={3}
-            mistakes={0}
-            questions={questions}
-            onUserAnswer={() => {}}
-            onWelcomeButtonClick={() => {}}
-            resetGame={() => {}}
-            step={-1}
-          />
-        </Provider>)
-    .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`Render GenreQuestionScreen`, () => {
-    const store = mockStore({
-      [NameSpace.GAME]: {
-        mistakes: 0,
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
       },
     });
 
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              login={() => {}}
+              maxMistakes={3}
+              mistakes={0}
+              questions={questions}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
+              step={-1}
+            />
+          </Provider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Render GenreQuestionScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
+    });
     const tree = renderer
       .create(
           <Provider store={store}>
@@ -99,17 +97,14 @@ describe(`Snapshot of App`, () => {
             }
           })
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
-
   it(`Render ArtistQuestionScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
-        mistakes: 0,
+        mistakes: 3,
       },
     });
-
     const tree = renderer
       .create(
           <Provider store={store}>
@@ -130,17 +125,14 @@ describe(`Snapshot of App`, () => {
             }
           })
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
-
   it(`Render GameOverScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
-        mistakes: 0,
+        mistakes: 3,
       },
     });
-
     const tree = renderer
       .create(
           <Provider store={store}>
@@ -161,14 +153,47 @@ describe(`Snapshot of App`, () => {
             }
           })
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
-
   it(`Render WinScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
-        mistakes: 0,
+        mistakes: 5,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              authorizationStatus={AuthorizationStatus.AUTH}
+              login={() => {}}
+              maxMistakes={3}
+              mistakes={0}
+              questions={questions}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
+              step={3}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Render AuthScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
       },
     });
 
@@ -192,7 +217,6 @@ describe(`Snapshot of App`, () => {
             }
           })
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

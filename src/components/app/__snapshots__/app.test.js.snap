@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot of App Render ArtistQuestionScreen 1`] = `
+exports[`Render App Render ArtistQuestionScreen 1`] = `
 <section
   className="game game--artist"
 >
@@ -9,7 +9,8 @@ exports[`Snapshot of App Render ArtistQuestionScreen 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
@@ -43,7 +44,17 @@ exports[`Snapshot of App Render ArtistQuestionScreen 1`] = `
     </svg>
     <div
       className="game__mistakes"
-    />
+    >
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+    </div>
   </header>
   <section
     className="game__screen"
@@ -149,7 +160,90 @@ exports[`Snapshot of App Render ArtistQuestionScreen 1`] = `
 </section>
 `;
 
-exports[`Snapshot of App Render GameOverScreen 1`] = `
+exports[`Render App Render AuthScreen 1`] = `
+<section
+  className="login"
+>
+  <div
+    className="login__logo"
+  >
+    <img
+      alt="Угадай мелодию"
+      height="83"
+      src="img/melody-logo.png"
+      width="186"
+    />
+  </div>
+  <h2
+    className="login__title"
+  >
+    Вы настоящий меломан!
+  </h2>
+  <p
+    className="login__text"
+  >
+    Хотите узнать свой результат? Представтесь!
+  </p>
+  <form
+    action=""
+    className="login__form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login__field"
+    >
+      <label
+        className="login__label"
+        htmlFor="name"
+      >
+        Логин
+      </label>
+      <input
+        className="login__input"
+        id="name"
+        name="name"
+        type="text"
+      />
+    </p>
+    <p
+      className="login__field"
+    >
+      <label
+        className="login__label"
+        htmlFor="password"
+      >
+        Пароль
+      </label>
+      <input
+        className="login__input"
+        id="password"
+        name="password"
+        type="text"
+      />
+      <span
+        className="login__error"
+      >
+        Неверный пароль
+      </span>
+    </p>
+    <button
+      className="login__button button"
+      type="submit"
+    >
+      Войти
+    </button>
+  </form>
+  <button
+    className="replay"
+    onClick={[Function]}
+    type="button"
+  >
+    Сыграть ещё раз
+  </button>
+</section>
+`;
+
+exports[`Render App Render GameOverScreen 1`] = `
 <section
   className="result"
 >
@@ -173,17 +267,17 @@ exports[`Snapshot of App Render GameOverScreen 1`] = `
   >
     У вас закончились все попытки. Ничего, повезёт в следующий раз!
   </p>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Попробовать ещё раз
-  </button>
+  </a>
 </section>
 `;
 
-exports[`Snapshot of App Render GenreQuestionScreen 1`] = `
+exports[`Render App Render GenreQuestionScreen 1`] = `
 <section
   className="game game--genre"
 >
@@ -192,7 +286,8 @@ exports[`Snapshot of App Render GenreQuestionScreen 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
@@ -226,7 +321,17 @@ exports[`Snapshot of App Render GenreQuestionScreen 1`] = `
     </svg>
     <div
       className="game__mistakes"
-    />
+    >
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+    </div>
   </header>
   <section
     className="game__screen"
@@ -389,7 +494,7 @@ exports[`Snapshot of App Render GenreQuestionScreen 1`] = `
 </section>
 `;
 
-exports[`Snapshot of App Render WelcomeScreen 1`] = `
+exports[`Render App Render WelcomeScreen 1`] = `
 <section
   className="welcome"
 >
@@ -443,12 +548,12 @@ exports[`Snapshot of App Render WelcomeScreen 1`] = `
 </section>
 `;
 
-exports[`Snapshot of App Render WinScreen 1`] = `
+exports[`Render App Render WinScreen 1`] = `
 <section
-  className="login"
+  className="result"
 >
   <div
-    className="login__logo"
+    className="result__logo"
   >
     <img
       alt="Угадай мелодию"
@@ -458,70 +563,25 @@ exports[`Snapshot of App Render WinScreen 1`] = `
     />
   </div>
   <h2
-    className="login__title"
+    className="result__title"
   >
     Вы настоящий меломан!
   </h2>
   <p
-    className="login__text"
+    className="result__total"
   >
-    Хотите узнать свой результат? Представтесь!
+    Вы ответили правильно на 
+    2
+     вопросов и совершили 
+    0
+     ошибки
   </p>
-  <form
-    action=""
-    className="login__form"
-    onSubmit={[Function]}
-  >
-    <p
-      className="login__field"
-    >
-      <label
-        className="login__label"
-        htmlFor="name"
-      >
-        Логин
-      </label>
-      <input
-        className="login__input"
-        id="name"
-        name="name"
-        type="text"
-      />
-    </p>
-    <p
-      className="login__field"
-    >
-      <label
-        className="login__label"
-        htmlFor="password"
-      >
-        Пароль
-      </label>
-      <input
-        className="login__input"
-        id="password"
-        name="password"
-        type="text"
-      />
-      <span
-        className="login__error"
-      >
-        Неверный пароль
-      </span>
-    </p>
-    <button
-      className="login__button button"
-      type="submit"
-    >
-      Войти
-    </button>
-  </form>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;

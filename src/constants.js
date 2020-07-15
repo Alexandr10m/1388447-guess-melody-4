@@ -1,7 +1,14 @@
-
 const GameType = {
   ARTIST: `artist`,
   GENRE: `genre`,
 };
 
-export {GameType};
+const AppRoute = {
+  LOGIN: `/login`,
+  LOSE: `/lose`,
+  RESULT: `/result`,
+  ROOT: `/`,
+};
+
+
+export {GameType, AppRoute};
