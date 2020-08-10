@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {GameType} from "../../constants.js";
-import Mistakes from "../mistakes/mistakes.jsx";
-import {getMistakes} from "../../reducer/game/selectors.js";
-import {ActionCreator} from "../../reducer/game/game.js";
-import {AppRoute} from "../../constants.js";
+import {GameType} from "../../constants";
+import Mistakes from "../mistakes/mistakes";
+import {getMistakes} from "../../reducer/game/selectors";
+import {ActionCreator} from "../../reducer/game/game";
+import {AppRoute} from "../../constants";
 
 
 const GameScreen = (props) => {

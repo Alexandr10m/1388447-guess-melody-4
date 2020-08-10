@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
-import App from "./components/app/app.jsx";
-import reducer from "./reducer/reducers.js";
-import {Operation as DataOperation} from "./reducer/data/data.js";
-import {Operation as UserOperation, AuthorizationStatus, ActionCreator} from "./reducer/user/user.js";
-import {createAPI} from "./api.js";
+import App from "./components/app/app";
+import reducer from "./reducer/reducers";
+import {Operation as DataOperation} from "./reducer/data/data";
+import {Operation as UserOperation, AuthorizationStatus, ActionCreator} from "./reducer/user/user";
+import {createAPI} from "./api";
 import thunk from "redux-thunk";
 
 

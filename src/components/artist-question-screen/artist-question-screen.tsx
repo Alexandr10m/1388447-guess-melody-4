@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../constants.js";
+import {GameType} from "../../constants";
 
 
 const INPUT_ID_PREFIX = `answer-`;

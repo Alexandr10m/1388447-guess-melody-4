@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../constants.js";
+import {GameType} from "../../constants";
 
 
 const withUserAnswer = (Component) => {
