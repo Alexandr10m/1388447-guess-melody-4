@@ -1,10 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants";
 
 
-const GameOverScreen = (props) => {
+interface Props {
+  onReplayButtonClick: () => void;
+}
+
+const GameOverScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {onReplayButtonClick} = props;
 
   return (
@@ -23,10 +26,6 @@ const GameOverScreen = (props) => {
       </Link>
     </section>
   );
-};
-
-GameOverScreen.propTypes = {
-  onReplayButtonClick: PropTypes.func.isRequired,
 };
 
 

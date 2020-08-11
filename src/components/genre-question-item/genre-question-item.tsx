@@ -1,8 +1,16 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import {AnswerGenre} from "../../types";
 
 
-class GenreQuestionItem extends PureComponent {
+interface Props {
+  answer: AnswerGenre;
+  id: number;
+  onChange: (id: number, value: boolean) => void;
+  renderPlayer: (src: string, id: number) => React.ReactNode;
+  userAnswer: boolean;
+}
+
+class GenreQuestionItem extends PureComponent<Props> {
   render() {
     const {answer, id, onChange, renderPlayer, userAnswer} = this.props;
 
@@ -25,17 +33,6 @@ class GenreQuestionItem extends PureComponent {
     );
   }
 }
-
-GenreQuestionItem.propTypes = {
-  answer: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-  }).isRequired,
-  id: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  userAnswer: PropTypes.bool.isRequired,
-};
 
 
 export default GenreQuestionItem;

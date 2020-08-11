@@ -1,8 +1,14 @@
 import React, {PureComponent, Fragment} from "react";
-import PropTypes from "prop-types";
 
 
-export default class AudioPlayer extends PureComponent {
+interface Props {
+  isLoading: boolean;
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  children: React.ReactNode;
+}
+
+class AudioPlayer extends PureComponent<Props, {}> {
   render() {
     const {isLoading, isPlaying, onPlayButtonClick, children} = this.props;
 
@@ -23,12 +29,4 @@ export default class AudioPlayer extends PureComponent {
 }
 
 
-AudioPlayer.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
+export default AudioPlayer;

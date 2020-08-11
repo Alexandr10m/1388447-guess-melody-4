@@ -1,5 +1,5 @@
 import {extend} from "../../utils";
-import {GameType} from "../../constants";
+import {GameType} from "../../types";
 
 
 const initialState = {
