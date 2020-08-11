@@ -1,4 +1,4 @@
-import React, {createRef, PureComponent} from "react";
+import * as React from "react";
 
 
 interface Props {
@@ -14,13 +14,13 @@ interface State {
 }
 
 const withAudio = (Component) => {
-  class WithAudio extends PureComponent<Props, State> {
+  class WithAudio extends React.PureComponent<Props, State> {
     private audioRef: React.RefObject<HTMLAudioElement>;
 
     constructor(props: Props) {
       super(props);
 
-      this.audioRef = createRef();
+      this.audioRef = React.createRef();
 
       this.state = {
         progress: 0,

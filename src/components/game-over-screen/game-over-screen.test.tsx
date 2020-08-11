@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import GameOverScreen from "./game-over-screen";
 import {Router} from "react-router-dom";
 import history from "../../history";

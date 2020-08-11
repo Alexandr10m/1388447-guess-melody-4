@@ -1,4 +1,4 @@
-import React, {PureComponent, Fragment} from "react";
+import * as React from "react";
 
 
 interface Props {
@@ -8,12 +8,12 @@ interface Props {
   children: React.ReactNode;
 }
 
-class AudioPlayer extends PureComponent<Props, {}> {
+class AudioPlayer extends React.PureComponent<Props, {}> {
   render() {
     const {isLoading, isPlaying, onPlayButtonClick, children} = this.props;
 
     return (
-      <Fragment>
+      <React.Fragment>
         <button
           className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
@@ -23,7 +23,7 @@ class AudioPlayer extends PureComponent<Props, {}> {
         <div className="track__status">
           {children}
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

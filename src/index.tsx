@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import App from "./components/app/app";
@@ -10,15 +10,13 @@ import {createAPI} from "./api";
 import thunk from "redux-thunk";
 
 
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f;
-
 const onUnauthorized = () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
 
 const api = createAPI(onUnauthorized);
 
 const store = createStore(reducer, compose(
     applyMiddleware(thunk.withExtraArgument(api)),
-    reduxDevTools
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
 store.dispatch(DataOperation.loadQuestions());

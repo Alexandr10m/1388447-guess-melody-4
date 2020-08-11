@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {mount} from "enzyme";
 import GenreQuestionScreen from "./genre-question-screen";
 import {GameType, QustionGenre} from "../../types";

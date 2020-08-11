@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/game/game";
@@ -39,7 +39,7 @@ interface Props {
 const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-class App extends PureComponent<Props, {}> {
+class App extends React.PureComponent<Props, {}> {
   _renderGameScreen() {
     const {
       authorizationStatus,
