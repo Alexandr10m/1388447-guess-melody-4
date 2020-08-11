@@ -9,7 +9,7 @@ interface Props {
 
 interface State {
   isLoading: boolean;
-  isPlaying: boolean;
+  isPlayingReal: boolean;
   progress: number;
 }
 
@@ -25,7 +25,7 @@ const withAudio = (Component) => {
       this.state = {
         progress: 0,
         isLoading: true,
-        isPlaying: props.isPlaying,
+        isPlayingReal: props.isPlaying,
       };
 
       this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
@@ -43,12 +43,12 @@ const withAudio = (Component) => {
 
       audio.onplay = () => {
         this.setState({
-          isPlaying: true,
+          isPlayingReal: true,
         });
       };
 
       audio.onpause = () => this.setState({
-        isPlaying: false,
+        isPlayingReal: false,
       });
 
       audio.ontimeupdate = () => this.setState({
@@ -59,7 +59,7 @@ const withAudio = (Component) => {
     componentDidUpdate() {
       const audio = this.audioRef.current;
 
-      if (this.state.isPlaying) {
+      if (this.props.isPlaying) {
         audio.play();
       } else {
         audio.pause();
@@ -78,20 +78,20 @@ const withAudio = (Component) => {
 
     handlePlayButtonClick() {
       const {onPlayButtonClick} = this.props;
-      const {isPlaying} = this.state;
+      const {isPlayingReal} = this.state;
 
-      this.setState({isPlaying: !isPlaying});
+      this.setState({isPlayingReal: !isPlayingReal});
       onPlayButtonClick();
     }
 
     render() {
-      const {isLoading, isPlaying} = this.state;
+      const {isLoading, isPlayingReal} = this.state;
 
       return (
         <Component
           {...this.props}
           isLoading={isLoading}
-          isPlaying={isPlaying}
+          isPlaying={isPlayingReal}
           onPlayButtonClick={this.handlePlayButtonClick}
         >
           <audio

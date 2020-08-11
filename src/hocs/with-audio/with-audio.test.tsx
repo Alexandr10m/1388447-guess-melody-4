@@ -1,9 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PropTypes from "prop-types";
-import withAudio from "./with-audio.js";
+import withAudio from "./with-audio";
+import {noop} from "../../utils";
 
-const MockComponent = (props) => {
+
+interface MockComponent {
+  children: React.ReactNode;
+}
+
+const MockComponent = (props: MockComponent) => {
   const {children} = props;
 
   return (
@@ -11,13 +16,6 @@ const MockComponent = (props) => {
       {children}
     </div>
   );
-};
-
-MockComponent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 const MockComponentWrapped = withAudio(MockComponent);
@@ -28,7 +26,7 @@ describe(`Snapshot of withAudio`, () => {
       .create((
         <MockComponentWrapped
           isPlaying={false}
-          onPlayButtonClick={() => {}}
+          onPlayButtonClick={noop}
           src={``}
         />
       ), {

@@ -1,42 +1,41 @@
 import React from "react";
 import {mount} from "enzyme";
-import GenreQuestionScreen from "./genre-question-screen.jsx";
+import GenreQuestionScreen from "./genre-question-screen";
+import {GameType, QustionGenre} from "../../types";
+import {noop} from "../../utils";
 
 
-const mock = {
-  question: {
-    type: `genre`,
-    genre: `rock`,
-    answers: [
-      {
-        src: `path`,
-        genre: `rock`,
-      },
-      {
-        src: `path`,
-        genre: `jazz`,
-      },
-      {
-        src: `path`,
-        genre: `jazz`,
-      },
-      {
-        src: `path`,
-        genre: `blues`,
-      },
-    ],
-  },
+const question: QustionGenre = {
+  type: GameType.GENRE,
+  genre: `rock`,
+  answers: [
+    {
+      src: `path`,
+      genre: `rock`,
+    },
+    {
+      src: `path`,
+      genre: `jazz`,
+    },
+    {
+      src: `path`,
+      genre: `jazz`,
+    },
+    {
+      src: `path`,
+      genre: `blues`,
+    },
+  ],
 };
 
 describe(`E2E test of GenreQuestionScreen`, () => {
   it(`When user answers genre question form is not sent`, () => {
-    const {question} = mock;
     const onAnswer = jest.fn();
     const genreQuestion = mount(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
-      renderPlayer={() => {}}
-      onChange={()=>{}}
+      renderPlayer={() => null}
+      onChange={noop}
       userAnswers={[false, false, false, false]}
     />);
 
@@ -51,15 +50,14 @@ describe(`E2E test of GenreQuestionScreen`, () => {
   });
 
   it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
-    const {question} = mock;
     const onAnswer = jest.fn((...args) => [...args]);
     const userAnswer = [true, false, false, false];
 
     const genreQuestion = mount(<GenreQuestionScreen
       onAnswer={onAnswer}
       question={question}
-      renderPlayer={() => {}}
-      onChange={() => {}}
+      renderPlayer={() => null}
+      onChange={noop}
       userAnswers={userAnswer}
     />);
 
@@ -67,7 +65,7 @@ describe(`E2E test of GenreQuestionScreen`, () => {
     const inputTwo = genreQuestion.find(`input`).at(0);
 
     inputTwo.simulate(`change`, {target: {id: `0`, checked: true}});
-    form.simulate(`submit`, {preventDefault() {}});
+    form.simulate(`submit`, {preventDefault: noop});
 
     expect(onAnswer).toHaveBeenCalledTimes(1);
 

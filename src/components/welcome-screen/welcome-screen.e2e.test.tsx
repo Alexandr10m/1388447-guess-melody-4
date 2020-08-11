@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import WelcomeScreen from "./welcome-screen.jsx";
+import WelcomeScreen from "./welcome-screen";
 
 
 describe(`E2E of WelcomeScreen`, () => {

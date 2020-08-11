@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import WelcomeScreen from "./welcome-screen.jsx";
+import WelcomeScreen from "./welcome-screen";
+import {noop} from "../../utils";
 
 
 describe(`Snapshot of WelcomScreen`, () => {
@@ -9,7 +10,7 @@ describe(`Snapshot of WelcomScreen`, () => {
       .create(
           <WelcomeScreen
             errorsCount={3}
-            onWelcomeButtonClick={() => {}}
+            onWelcomeButtonClick={noop}
           />)
       .toJSON();
 

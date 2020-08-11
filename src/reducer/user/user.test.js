@@ -1,4 +1,4 @@
-import {reducer, ActionCreator, ActionType, AuthorizationStatus} from "./user.js";
+import {reducer, ActionCreator, ActionType, AuthorizationStatus} from "./user";
 
 
 describe(`Test of user.js action`, () => {

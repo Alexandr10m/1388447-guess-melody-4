@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import AudioPlayer from "./audio-player.jsx";
+import AudioPlayer from "./audio-player";
 
 describe(`E2E test of AudioPlayer`, () => {
   it(`Click by Play button calls callback`, () => {

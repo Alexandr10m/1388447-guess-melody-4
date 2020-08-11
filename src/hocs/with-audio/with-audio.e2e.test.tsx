@@ -1,9 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {mount} from "enzyme";
-import withAudio from "./with-audio.js";
+import withAudio from "./with-audio";
+import {noop} from "../../utils";
 
-const Player = (props) => {
+
+interface PlayerProps {
+  children: React.ReactNode;
+  onPlayButtonClick: () => void
+}
+
+const Player = (props: PlayerProps) => {
   const {onPlayButtonClick, children} = props;
   return (
     <div>
@@ -13,30 +19,25 @@ const Player = (props) => {
   );
 };
 
-Player.propTypes = {
-  onPlayButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
-
 describe(`E2E test of withAudio`, () => {
   it(`Checks that HOC's callback turn on audio (play)`, () => {
     const PlayerWrapped = withAudio(Player);
     const wrapper = mount(
         <PlayerWrapped
           isPlaying={false}
-          onPlayButtonClick={() => {}}
+          onPlayButtonClick={noop}
           src=""
         />);
 
-    window.HTMLMediaElement.prototype.play = () => {};
-    const {_audioRef} = wrapper.instance();
-    jest.spyOn(_audioRef.current, `play`);
+    window.HTMLMediaElement.prototype.play = () => Promise.resolve();
+
+    const {audioRef} = wrapper.instance();
+    jest.spyOn(audioRef.current, `play`);
+
     wrapper.instance().componentDidMount();
     wrapper.find(`button`).simulate(`click`);
-    expect(_audioRef.current.play).toHaveBeenCalledTimes(1);
+
+    expect(audioRef.current.play).toHaveBeenCalledTimes(1);
   });
 
   it(`Checks that HOC's callback turn off audio (pause)`, () => {
@@ -44,17 +45,19 @@ describe(`E2E test of withAudio`, () => {
     const wrapper = mount(
         <PlayerWrapped
           isPlaying={true}
-          onPlayButtonClick={() => {}}
+          onPlayButtonClick={noop}
           src=""
         />);
 
-    window.HTMLMediaElement.prototype.pause = () => {};
-    const {_audioRef} = wrapper.instance();
-    jest.spyOn(_audioRef.current, `pause`);
+    window.HTMLMediaElement.prototype.pause = noop;
+
+    const {audioRef} = wrapper.instance();
+    jest.spyOn(audioRef.current, `pause`);
+
     wrapper.instance().componentDidMount();
     wrapper.find(`button`).simulate(`click`);
 
-    expect(_audioRef.current.pause).toHaveBeenCalledTimes(1);
+    expect(audioRef.current.pause).toHaveBeenCalledTimes(1);
   });
 
 });

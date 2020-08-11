@@ -1,34 +1,34 @@
 import React from "react";
 import {shallow} from "enzyme";
-import ArtistQuestionScreen from "./artist-question-screen.jsx";
+import ArtistQuestionScreen from "./artist-question-screen";
+import {GameType, QustionArtist} from "../../types";
+import {noop} from "../../utils";
 
 
-const mock = {
-  question: {
-    type: `artist`,
-    song: {
-      artist: ``,
-      src: ``
+const question: QustionArtist = {
+  type: GameType.ARTIST,
+  song: {
+    artist: ``,
+    src: ``
+  },
+  answers: [
+    {
+      artist: `one`,
+      picture: `pic-one`,
     },
-    answers: [
-      {
-        artist: `one`,
-        picture: `pic-one`,
-      },
-      {
-        artist: `two`,
-        picture: `pic-two`,
-      },
-      {
-        artist: `three`,
-        picture: `pic-three`,
-      },
-    ],
-  }
+    {
+      artist: `two`,
+      picture: `pic-two`,
+    },
+    {
+      artist: `three`,
+      picture: `pic-three`,
+    },
+  ],
 };
 
 const mockEvent = {
-  preventDefault: () => {},
+  preventDefault: noop,
   target: {
     id: `0`,
   },
@@ -36,7 +36,6 @@ const mockEvent = {
 
 describe(`E2E test of ArtistQuestionScreen`, () => {
   it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
-    const {question} = mock;
     const onAnswer = jest.fn();
     const userAnswer = {
       artist: `one`,
@@ -46,7 +45,7 @@ describe(`E2E test of ArtistQuestionScreen`, () => {
     const screen = shallow(<ArtistQuestionScreen
       onAnswer={onAnswer}
       question={question}
-      renderPlayer={() => {}}
+      renderPlayer={() => null}
     />);
 
     const answerInputs = screen.find(`input`);
