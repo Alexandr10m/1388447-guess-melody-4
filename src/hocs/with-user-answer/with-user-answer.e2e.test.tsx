@@ -1,9 +1,12 @@
 import * as React from "react";
-import {shallow} from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
 import withUserAnswer from "./with-user-answer";
 import {GameType, QustionGenre} from "../../types";
 import {noop} from "../../utils";
 
+
+configure({adapter: new Adapter()});
 
 const MockComponent = () => <div/>;
 const MockComponentWrapper = withUserAnswer(MockComponent);

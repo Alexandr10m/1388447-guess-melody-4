@@ -1,5 +1,5 @@
 import * as React from "react";
-import {QustionGenre, AnswerArtist} from "../../types";
+import {QustionGenre} from "../../types";
 import {Subtract} from "utility-types";
 
 
@@ -12,7 +12,7 @@ interface State {
   answers: Answer;
 }
 
-interface InjectedProps  {
+interface InjectedProps {
   userAnswers: Answer;
   onAnswer: () => void;
   onChange: (answerIndex: number, value: boolean) => void;

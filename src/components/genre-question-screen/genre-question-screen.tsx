@@ -1,6 +1,5 @@
 import * as React from "react";
 import GenreQuestionItem from "../genre-question-item/genre-question-item";
-import {GameType} from "../../constants";
 import {QustionGenre} from "../../types";
 
 

@@ -1,9 +1,12 @@
 import * as React from "react";
-import {mount} from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, mount} from "enzyme";
 import GenreQuestionScreen from "./genre-question-screen";
 import {GameType, QustionGenre} from "../../types";
 import {noop} from "../../utils";
 
+
+configure({adapter: new Adapter()});
 
 const question: QustionGenre = {
   type: GameType.GENRE,

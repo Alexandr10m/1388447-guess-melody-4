@@ -8,9 +8,9 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {GameType, QustionArtist, QustionGenre} from "../../types";
 import {noop} from "../../utils";
 
-
 const mockStore = configureStore([]);
-const questions: (QustionArtist | QustionGenre)[] = [
+
+const questions: (QustionArtist|QustionGenre)[] = [
   {
     type: GameType.GENRE,
     genre: `rock`,
@@ -74,14 +74,17 @@ describe(`Render App`, () => {
           </Provider>
       )
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
+
   it(`Render GenreQuestionScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
         mistakes: 3,
       },
     });
+
     const tree = renderer
       .create(
           <Provider store={store}>
@@ -102,14 +105,17 @@ describe(`Render App`, () => {
             }
           })
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
+
   it(`Render ArtistQuestionScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
         mistakes: 3,
       },
     });
+
     const tree = renderer
       .create(
           <Provider store={store}>
@@ -130,14 +136,17 @@ describe(`Render App`, () => {
             }
           })
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
+
   it(`Render GameOverScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
         mistakes: 3,
       },
     });
+
     const tree = renderer
       .create(
           <Provider store={store}>
@@ -158,8 +167,10 @@ describe(`Render App`, () => {
             }
           })
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
+
   it(`Render WinScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
@@ -190,8 +201,10 @@ describe(`Render App`, () => {
             }
           })
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
+
   it(`Render AuthScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
@@ -222,6 +235,7 @@ describe(`Render App`, () => {
             }
           })
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 });

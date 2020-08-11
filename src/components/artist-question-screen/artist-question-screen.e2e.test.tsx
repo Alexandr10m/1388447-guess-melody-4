@@ -1,9 +1,12 @@
 import * as React from "react";
-import {shallow} from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
 import ArtistQuestionScreen from "./artist-question-screen";
 import {GameType, QustionArtist} from "../../types";
 import {noop} from "../../utils";
 
+
+configure({adapter: new Adapter()});
 
 const question: QustionArtist = {
   type: GameType.ARTIST,

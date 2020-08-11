@@ -2,8 +2,8 @@ import * as React from "react";
 
 
 interface Props {
-  errorsCount: number,
-  onWelcomeButtonClick: () => void,
+  errorsCount: number;
+  onWelcomeButtonClick: () => void;
 }
 
 const WelcomeScreen: React.FunctionComponent<Props> = (props: Props) => {

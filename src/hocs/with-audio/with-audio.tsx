@@ -2,9 +2,9 @@ import * as React from "react";
 
 
 interface Props {
-  isPlaying: boolean,
-  onPlayButtonClick: () => void,
-  src: string,
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  src: string;
 }
 
 interface State {

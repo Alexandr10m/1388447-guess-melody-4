@@ -11,7 +11,6 @@ import GenreQuestionScreen from "../genre-question-screen/genre-question-screen"
 import GameOverScreen from "../game-over-screen/game-over-screen";
 import WinScreen from "../win-screen/win-screen";
 import PrivateRoute from "../private-route/private-route";
-import {GameType, QustionArtist, QustionGenre} from "../../types";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 import {getStep, getMistakes, getMaxMistakes} from "../../reducer/game/selectors";
@@ -20,9 +19,8 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors";
 import {Operation as UserOperation} from "../../reducer/user/user";
 import history from "../../history";
 import {AppRoute} from "../../constants";
+import {GameType, QustionGenre, QustionArtist} from "../../types";
 
-
-type Question = QustionGenre | QustionArtist;
 
 interface Props {
   authorizationStatus: string;
@@ -35,6 +33,8 @@ interface Props {
   resetGame: () => void;
   step: number;
 }
+
+type Question = QustionArtist | QustionGenre;
 
 const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
